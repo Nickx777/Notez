@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Note</title>
+    <!-- Include Quill.js for text notes -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        #editor-header {
+            height: 50px;
+            background-color: #333;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #editor-header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        #editor-header button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #editor-header button:hover {
+            background-color: #218838;
+        }
+        #editor-container, #canvas-container {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        #canvas-container {
+            display: none; /* Hidden by default, shown for drawing notes */
+            position: relative;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+        }
+        #drawing-tools {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #ddd;
+            border-bottom: 1px solid #ccc;
+        }
+        #drawing-tools select,
+        #drawing-tools input[type="color"] {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="editor-header">
+        <h1 id="note-title-display"></h1>
+        <button id="save-button">Save</button>
+    </div>
+
+    <!-- Text Editor -->
+    <div id="editor-container"></div>
+
+    <!-- Drawing Canvas and Tools -->
+    <div id="drawing-tools">
+        <label>Brush Size:
+            <select id="brush-size">
+                <option value="2">2px</option>
+                <option value="5">5px</option>
+                <option value="10">10px</option>
+                <option value="20">20px</option>
+            </select>
+        </label>
+        <label>Color:
+            <input type="color" id="brush-color" value="#000000">
+        </label>
+        <button onclick="clearCanvas()">Clear Canvas</button>
+    </div>
+    <div id="canvas-container">
+        <canvas id="drawing-canvas"></canvas>
+    </div>
+
+    <!-- Include Quill.js -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
